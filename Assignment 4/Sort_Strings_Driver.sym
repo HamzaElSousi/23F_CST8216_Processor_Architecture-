@@ -1,0 +1,16 @@
+donesorting 2014
+exitsubroutine 21bb
+find_two_strings 2198
+firstchar  2196
+firststringend 21af
+mainloop   2003
+needswap   200f
+nullchar   0000
+numberofnames 001b
+secondchar 2197
+secondstringend 21b6
+space      0020
+start      2000
+swap_two_strings 227f
+tempbuffer 227e
+tempchar   227d

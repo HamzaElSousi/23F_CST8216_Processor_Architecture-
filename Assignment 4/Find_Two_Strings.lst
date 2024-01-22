@@ -1,0 +1,102 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Find_Two_Strings.asm
+                        ;
+                        ; Author:               [Your Name]
+                        ;
+                        ; Date:                 [Current Date]
+                        ;
+                        ; Purpose:              Subroutine to find the first character of two strings
+                        
+                        #include "Lab_Section_301_Names.txt"
+0000 44 61 6c 67 61 61         fcc "Dalgaard "
+     72 64 20
+0009 48 75 64 73 6f 6e         fcc "Hudson "
+     20
+0010 4c 65 64 67 65 72         fcc "Ledger "
+     20
+0017 48 69 67 67 69 6e         fcc "Higgins "
+     73 20
+001f 53 68 75 6d 61 6b         fcc "Shumaker "
+     65 72 20
+0028 48 69 6c 6c 20            fcc "Hill "
+002d 53 63 6f 74 74 20         fcc "Scott "
+0033 48 6f 72 6e 73 62         fcc "Hornsby "
+     79 20
+003b 54 75 65 73 64 61         fcc "Tuesday "
+     79 20
+0043 48 75 66 66 20            fcc "Huff "
+0048 54 61 79 6c 6f 72         fcc "Taylor "
+     20
+004f 44 69 63 6b 65 72         fcc "Dickerson "
+     73 6f 6e 20
+0059 44 61 79 74 6f 6e         fcc "Dayton "
+     20
+0060 4d 6f 72 67 61 6e         fcc "Morgan "
+     20
+0067 49 76 6f 72 79 20         fcc "Ivory "
+006d 43 6f 68 65 6e 20         fcc "Cohen "
+0073 43 6f 73 74 61 20         fcc "Costa "
+0079 52 6f 6e 69 6e 20         fcc "Ronin "
+007f 51 75 69 6c 6c 20         fcc "Quill "
+0085 4a 61 6d 65 73 6f         fcc "Jameson "
+     6e 20
+008d 5a 68 61 6f 20            fcc "Zhao "
+0092 54 75 65 73 64 61         fcc "Tuesday "
+     79 20
+009a 4a 6f 68 61 20            fcc "Joha "
+009f 52 75 6c 6c 6f 64         fcc "Rulloda "
+     61 20
+00a7 52 61 74 63 6c 69         fcc "Ratcliffe "
+     66 66 65 20
+00b1 43 6f 75 6c 6f 6d         fcc "Coulombe "
+     62 65 20
+00ba 48 6f 6c 6d 65 73         fcc "Holmes "
+     20
+                        #endinclude
+
+00c1                    FirstChar    RMB 1  ; Reserve memory for the first character
+00c2                    SecondChar   RMB 1  ; Reserve memory for the second character
+                        
+00c3                    Find_Two_Strings:
+Find_Two_Strings.asm:14: Error - Symbol NamesBuffer is undefined.
+00c3 96 00                  ldaa NamesBuffer, x  ; Load the first character of the first string
+00c5 5a c1                  staa FirstChar
+                        
+                            ; Check if the end of the first string is reached
+00c7 81 20                  cmpa #Space
+00c9 27 0d                  beq FirstStringEnd
+                        
+                            ; Increment index and load the first character of the second string
+00cb 08                     inx
+Find_Two_Strings.asm:23: Error - Symbol NamesBuffer is undefined.
+00cc 96 00                  ldaa NamesBuffer, x
+00ce 5a c2                  staa SecondChar
+                        
+                            ; Check if the end of the second string is reached
+00d0 81 20                  cmpa #Space
+00d2 27 0a                  beq SecondStringEnd
+                        
+00d4 20 0c                  bra ExitSubroutine
+                        
+Find_Two_Strings.asm:32: Error - Phasing error.
+00d6                    FirstStringEnd:
+00d6 86 20                  ldaa #Space  ; Load space as the second character
+00d8 5a c2                  staa SecondChar
+00da 20 06                  bra ExitSubroutine
+                        
+Find_Two_Strings.asm:37: Error - Phasing error.
+00dc                    SecondStringEnd:
+00dc 86 00                  ldaa #NullChar  ; Load null character as the second character
+00de 5a c2                  staa SecondChar
+                        
+Find_Two_Strings.asm:41: Error - Phasing error.
+00e0                    ExitSubroutine:
+00e0 3d                     rts
+                        
+0020                    Space       EQU $20  ; ASCII code for space character
+0000                    NullChar    EQU $00  ; Null character to indicate the end of a string
+
+Executed: Wed Nov 29 23:45:33 2023
+Total errors: 5, Total warnings: 0

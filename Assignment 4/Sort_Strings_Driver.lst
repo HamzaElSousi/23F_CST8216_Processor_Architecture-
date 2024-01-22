@@ -1,0 +1,271 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ; Sort_Strings_Driver.asm
+                        ;
+                        ; Author:               [Your Name]
+                        ;
+                        ; Date:                 [Current Date]
+                        ;
+                        ; Purpose:              Main driver program to sort an array of strings
+                        ; Start of the program memory
+2000                     org $2000
+2000                    START:      ; Entry point
+2000 ce 00 00               ldx #0  ; Initialize index register to 0
+                        
+2003                    MainLoop:
+2003 16 21 98               jsr Find_Two_Strings  ; Call subroutine to find two strings
+2006 26 07                  bne NeedSwap          ; Branch if strings need to be swapped
+                        
+                            ; Continue traversing through the array
+2008 08                     inx
+2009 81 1b                  cmpa #NumberOfNames   ; Check if all names have been processed
+200b 27 07                  beq DoneSorting
+                        
+200d 20 f4                  bra MainLoop
+                        
+200f                    NeedSwap:
+200f 16 22 7f               jsr Swap_Two_Strings   ; Call subroutine to swap two strings
+2012 20 ef                  bra MainLoop
+                        
+2014                    DoneSorting:
+                            ; Sorting complete, you can add further code or exit here
+                        
+001b                    NumberOfNames EQU 27  ; Update this value based on the number of names in the file
+                        
+                        #include "Lab_Section_301_Names.txt"
+2014 44 61 6c 67 61 61         fcc "Dalgaard "
+     72 64 20
+201d 48 75 64 73 6f 6e         fcc "Hudson "
+     20
+2024 4c 65 64 67 65 72         fcc "Ledger "
+     20
+202b 48 69 67 67 69 6e         fcc "Higgins "
+     73 20
+2033 53 68 75 6d 61 6b         fcc "Shumaker "
+     65 72 20
+203c 48 69 6c 6c 20            fcc "Hill "
+2041 53 63 6f 74 74 20         fcc "Scott "
+2047 48 6f 72 6e 73 62         fcc "Hornsby "
+     79 20
+204f 54 75 65 73 64 61         fcc "Tuesday "
+     79 20
+2057 48 75 66 66 20            fcc "Huff "
+205c 54 61 79 6c 6f 72         fcc "Taylor "
+     20
+2063 44 69 63 6b 65 72         fcc "Dickerson "
+     73 6f 6e 20
+206d 44 61 79 74 6f 6e         fcc "Dayton "
+     20
+2074 4d 6f 72 67 61 6e         fcc "Morgan "
+     20
+207b 49 76 6f 72 79 20         fcc "Ivory "
+2081 43 6f 68 65 6e 20         fcc "Cohen "
+2087 43 6f 73 74 61 20         fcc "Costa "
+208d 52 6f 6e 69 6e 20         fcc "Ronin "
+2093 51 75 69 6c 6c 20         fcc "Quill "
+2099 4a 61 6d 65 73 6f         fcc "Jameson "
+     6e 20
+20a1 5a 68 61 6f 20            fcc "Zhao "
+20a6 54 75 65 73 64 61         fcc "Tuesday "
+     79 20
+20ae 4a 6f 68 61 20            fcc "Joha "
+20b3 52 75 6c 6c 6f 64         fcc "Rulloda "
+     61 20
+20bb 52 61 74 63 6c 69         fcc "Ratcliffe "
+     66 66 65 20
+20c5 43 6f 75 6c 6f 6d         fcc "Coulombe "
+     62 65 20
+20ce 48 6f 6c 6d 65 73         fcc "Holmes "
+     20
+                        #endinclude
+
+                        #include "Find_Two_Strings.asm"
+                        ; Find_Two_Strings.asm
+                        ;
+                        ; Author:               [Your Name]
+                        ;
+                        ; Date:                 [Current Date]
+                        ;
+                        ; Purpose:              Subroutine to find the first character of two strings
+                        
+                        #include "Lab_Section_301_Names.txt"
+20d5 44 61 6c 67 61 61         fcc "Dalgaard "
+     72 64 20
+20de 48 75 64 73 6f 6e         fcc "Hudson "
+     20
+20e5 4c 65 64 67 65 72         fcc "Ledger "
+     20
+20ec 48 69 67 67 69 6e         fcc "Higgins "
+     73 20
+20f4 53 68 75 6d 61 6b         fcc "Shumaker "
+     65 72 20
+20fd 48 69 6c 6c 20            fcc "Hill "
+2102 53 63 6f 74 74 20         fcc "Scott "
+2108 48 6f 72 6e 73 62         fcc "Hornsby "
+     79 20
+2110 54 75 65 73 64 61         fcc "Tuesday "
+     79 20
+2118 48 75 66 66 20            fcc "Huff "
+211d 54 61 79 6c 6f 72         fcc "Taylor "
+     20
+2124 44 69 63 6b 65 72         fcc "Dickerson "
+     73 6f 6e 20
+212e 44 61 79 74 6f 6e         fcc "Dayton "
+     20
+2135 4d 6f 72 67 61 6e         fcc "Morgan "
+     20
+213c 49 76 6f 72 79 20         fcc "Ivory "
+2142 43 6f 68 65 6e 20         fcc "Cohen "
+2148 43 6f 73 74 61 20         fcc "Costa "
+214e 52 6f 6e 69 6e 20         fcc "Ronin "
+2154 51 75 69 6c 6c 20         fcc "Quill "
+215a 4a 61 6d 65 73 6f         fcc "Jameson "
+     6e 20
+2162 5a 68 61 6f 20            fcc "Zhao "
+2167 54 75 65 73 64 61         fcc "Tuesday "
+     79 20
+216f 4a 6f 68 61 20            fcc "Joha "
+2174 52 75 6c 6c 6f 64         fcc "Rulloda "
+     61 20
+217c 52 61 74 63 6c 69         fcc "Ratcliffe "
+     66 66 65 20
+2186 43 6f 75 6c 6f 6d         fcc "Coulombe "
+     62 65 20
+218f 48 6f 6c 6d 65 73         fcc "Holmes "
+     20
+                        #endinclude
+
+2196                    FirstChar    RMB 1  ; Reserve memory for the first character
+2197                    SecondChar   RMB 1  ; Reserve memory for the second character
+                        
+2198                    Find_Two_Strings:
+Find_Two_Strings.asm:14: Error - Symbol NamesBuffer is undefined.
+2198 96 00                  ldaa NamesBuffer, x  ; Load the first character of the first string
+219a 7a 21 96               staa FirstChar
+                        
+                            ; Check if the end of the first string is reached
+219d 81 20                  cmpa #Space
+219f 27 0e                  beq FirstStringEnd
+                        
+                            ; Increment index and load the first character of the second string
+21a1 08                     inx
+Find_Two_Strings.asm:23: Error - Symbol NamesBuffer is undefined.
+21a2 96 00                  ldaa NamesBuffer, x
+21a4 7a 21 97               staa SecondChar
+                        
+                            ; Check if the end of the second string is reached
+21a7 81 20                  cmpa #Space
+21a9 27 0b                  beq SecondStringEnd
+                        
+21ab 20 0e                  bra ExitSubroutine
+                        
+Find_Two_Strings.asm:32: Error - Phasing error.
+21ad                    FirstStringEnd:
+21ad 86 20                  ldaa #Space  ; Load space as the second character
+21af 7a 21 97               staa SecondChar
+21b2 20 07                  bra ExitSubroutine
+                        
+Find_Two_Strings.asm:37: Error - Phasing error.
+21b4                    SecondStringEnd:
+21b4 86 00                  ldaa #NullChar  ; Load null character as the second character
+21b6 7a 21 97               staa SecondChar
+                        
+Find_Two_Strings.asm:41: Error - Phasing error.
+21b9                    ExitSubroutine:
+21b9 3d                     rts
+                        
+0020                    Space       EQU $20  ; ASCII code for space character
+0000                    NullChar    EQU $00  ; Null character to indicate the end of a string
+                        #endinclude
+
+                        #include "Swap_Two_Strings.asm"
+                        ; Swap_Two_Strings.asm
+                        ;
+                        ; Author:               [Your Name]
+                        ;
+                        ; Date:                 [Current Date]
+                        ;
+                        ; Purpose:              Subroutine to swap two strings in memory
+                        
+                        #include "Lab_Section_301_Names.txt"
+21ba 44 61 6c 67 61 61         fcc "Dalgaard "
+     72 64 20
+21c3 48 75 64 73 6f 6e         fcc "Hudson "
+     20
+21ca 4c 65 64 67 65 72         fcc "Ledger "
+     20
+21d1 48 69 67 67 69 6e         fcc "Higgins "
+     73 20
+21d9 53 68 75 6d 61 6b         fcc "Shumaker "
+     65 72 20
+21e2 48 69 6c 6c 20            fcc "Hill "
+21e7 53 63 6f 74 74 20         fcc "Scott "
+21ed 48 6f 72 6e 73 62         fcc "Hornsby "
+     79 20
+21f5 54 75 65 73 64 61         fcc "Tuesday "
+     79 20
+21fd 48 75 66 66 20            fcc "Huff "
+2202 54 61 79 6c 6f 72         fcc "Taylor "
+     20
+2209 44 69 63 6b 65 72         fcc "Dickerson "
+     73 6f 6e 20
+2213 44 61 79 74 6f 6e         fcc "Dayton "
+     20
+221a 4d 6f 72 67 61 6e         fcc "Morgan "
+     20
+2221 49 76 6f 72 79 20         fcc "Ivory "
+2227 43 6f 68 65 6e 20         fcc "Cohen "
+222d 43 6f 73 74 61 20         fcc "Costa "
+2233 52 6f 6e 69 6e 20         fcc "Ronin "
+2239 51 75 69 6c 6c 20         fcc "Quill "
+223f 4a 61 6d 65 73 6f         fcc "Jameson "
+     6e 20
+2247 5a 68 61 6f 20            fcc "Zhao "
+224c 54 75 65 73 64 61         fcc "Tuesday "
+     79 20
+2254 4a 6f 68 61 20            fcc "Joha "
+2259 52 75 6c 6c 6f 64         fcc "Rulloda "
+     61 20
+2261 52 61 74 63 6c 69         fcc "Ratcliffe "
+     66 66 65 20
+226b 43 6f 75 6c 6f 6d         fcc "Coulombe "
+     62 65 20
+2274 48 6f 6c 6d 65 73         fcc "Holmes "
+     20
+                        #endinclude
+
+                        
+Swap_Two_Strings.asm:11: Error - Phasing error.
+227b                    TempChar    RMB 1  ; Reserve memory for temporary character
+Swap_Two_Strings.asm:12: Error - Phasing error.
+227c                    TempBuffer  RMB 1  ; Reserve memory for temporary buffer
+                        
+Swap_Two_Strings.asm:14: Error - Phasing error.
+227d                    Swap_Two_Strings:
+227d b6 21 96               ldaa FirstChar
+2280 7a 22 7d               staa TempChar       ; Save the first character temporarily
+                        
+Swap_Two_Strings.asm:18: Error - Symbol NamesBuffer is undefined.
+2283 96 00                  ldaa NamesBuffer, x  ; Load the second character of the first string
+2285 7a 22 7e               staa TempBuffer      ; Save the second character temporarily
+                        
+Swap_Two_Strings.asm:21: Error - Symbol NamesBuffer is undefined.
+2288 96 00                  ldaa NamesBuffer, y  ; Load the first character of the second string
+Swap_Two_Strings.asm:22: Error - Symbol NamesBuffer is undefined.
+228a 5a 00                  staa NamesBuffer, x
+                        
+228c b6 22 7d               ldaa TempChar       ; Load the first character into the second string
+Swap_Two_Strings.asm:25: Error - Symbol NamesBuffer is undefined.
+228f 5a 00                  staa NamesBuffer, y
+                        
+2291 b6 22 7e               ldaa TempBuffer      ; Load the second character into the first string
+Swap_Two_Strings.asm:28: Error - Symbol NamesBuffer is undefined.
+2294 5a 00                  staa NamesBuffer, x
+                        
+2296 3d                     rts
+                        #endinclude
+
+
+Executed: Mon Dec 04 00:36:45 2023
+Total errors: 13, Total warnings: 0

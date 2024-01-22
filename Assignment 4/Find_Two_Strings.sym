@@ -1,0 +1,8 @@
+exitsubroutine 00e2
+find_two_strings 00c3
+firstchar  00c1
+firststringend 00d8
+nullchar   0000
+secondchar 00c2
+secondstringend 00de
+space      0020

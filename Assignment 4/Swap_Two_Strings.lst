@@ -1,0 +1,12 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+Swap_Two_Strings.asm:11: Error - Unknown mnemonic: firstchar
+Swap_Two_Strings.asm:12: Error - Unknown mnemonic: tempchar
+Swap_Two_Strings.asm:14: Error - Unknown mnemonic: namesbuffex  ; Load the second character of the first string
+Swap_Two_Strings.asm:15: Error - Unknown mnemonic: namesbuffey
+Swap_Two_Strings.asm:17: Error - Unknown mnemonic: tempchar
+Swap_Two_Strings.asm:18: Error - Unknown mnemonic: namesbuffex
+
+Executed: Wed Nov 29 23:35:38 2023
+Total errors: 6, Total warnings: 0
